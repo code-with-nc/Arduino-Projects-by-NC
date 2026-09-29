@@ -1,0 +1,40 @@
+// C++ code
+//
+int pot_val = 0;
+
+void setup()
+{
+  // Initialize serial communication at 9600 bits per second
+  Serial.begin(9600); 
+  
+  pinMode(LED_BUILTIN, OUTPUT);
+  pinMode(A0, INPUT);
+  pinMode(13, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(5, OUTPUT);
+}
+
+void loop()
+{
+  pot_val = analogRead(A0);
+  
+  // Print the potentiometer value to the Serial Monitor
+  Serial.print("Potentiometer Value: ");
+  Serial.println(pot_val);
+  
+  if (pot_val >= 700) {
+    digitalWrite(13, HIGH);
+    delay(2000); // Wait for 2000 millisecond(s)
+    digitalWrite(13, LOW);
+  } else {
+    if (pot_val >= 500) {
+      digitalWrite(8, HIGH);
+      delay(2000); // Wait for 2000 millisecond(s)
+      digitalWrite(8, LOW);
+    } else {
+      digitalWrite(5, HIGH);
+      delay(2000); // Wait for 2000 millisecond(s)
+      digitalWrite(5, LOW);
+    }
+  }
+}
